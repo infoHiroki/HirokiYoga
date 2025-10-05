@@ -11,15 +11,15 @@
 
 - **HTML5**：セマンティックな構造
 - **CSS3**：モダンなレイアウト（Flexbox, Grid）
-- **JavaScript**：スクロールアニメーション
-- **Google Fonts**：M PLUS Rounded 1c + Comfortaa
+- **JavaScript**：スムーズスクロール
+- **Google Fonts**：Noto Sans JP + Noto Serif JP
 
 ## デザイン
 
 - **カラー**：黄色（#FFD166）+ 白
-- **スタイル**：シンプル、ポップ
-- **特徴**：blobアニメーション、スクロールエフェクト
-- **レスポンシブ**：モバイルファースト
+- **スタイル**：シンプル、クリーン、プロフェッショナル
+- **特徴**：グラデーション背景、カードベースデザイン
+- **レスポンシブ**：完全モバイルファースト（320px〜対応）
 
 ## ファイル構成
 
@@ -29,25 +29,28 @@
 ├── css/
 │   └── style.css       # スタイルシート
 ├── js/
-│   └── script.js       # スクロールアニメーション
+│   └── script.js       # スムーズスクロール
 ├── images/
-│   ├── profile-2016.jpg      # プロフィール写真（2016年）
-│   ├── profile-2025.png      # プロフィール写真（2025年）
-│   ├── hero-outdoor.jpg      # ヒーロー背景用
-│   ├── group-lesson.jpg      # グループレッスン
-│   ├── studio-pose.jpg       # スタジオポーズ
-│   └── asana-chart.jpg       # アーサナチャート
-└── Claude.md           # このファイル
+│   ├── favicon.svg          # ファビコン（SVG）
+│   ├── icon.png             # ファビコン（PNG）
+│   ├── profile-2016.jpg     # プロフィール写真（2016年）
+│   ├── profile-2025.png     # プロフィール写真（2025年）
+│   ├── hero-outdoor.jpg     # ヒーロー背景用
+│   ├── group-lesson.jpg     # グループレッスン
+│   ├── studio-pose.jpg      # スタジオポーズ
+│   └── asana-chart.jpg      # アーサナチャート
+├── Claude.md           # このファイル
+└── .gitignore          # Git除外設定
 ```
 
 ## セクション構成
 
-1. **Hero**：キャッチコピー + blobアニメーション
-2. **Story**：印度哲学とヨガの旅
-3. **Lesson**：レッスン内容（時間、場所、料金など）
-4. **About**：講師紹介（プロフィール写真2枚 + 経歴）
+1. **Hero**：キャッチコピー + グラデーション背景
+2. **About**：講師紹介（プロフィール写真2枚 + 経歴）
+3. **Story**：印度哲学とヨガの旅
+4. **Lesson**：レッスン内容（時間、場所、料金など）
 5. **Gallery**：レッスン風景
-6. **Contact**：お問い合わせ（Googleフォーム + Instagram）
+6. **Contact**：お問い合わせ（Instagram）
 7. **Footer**：コピーライト
 
 ## コンテンツ詳細
@@ -61,7 +64,7 @@
 - **経歴**：
   - 15歳からダンス（カポエラ、ストリート、コンテンポラリー）
   - ヨガ講師歴10年以上
-  - DVD監修「お家で出来るはじめてのシヴァナンダヨガ」
+  - [DVD監修「お家で出来るはじめてのシヴァナンダヨガ」](https://www.amazon.co.jp/dp/B01GG4VCLY)
   - 東京から福岡へ移住
 
 ### レッスン詳細
@@ -69,36 +72,91 @@
 - **時間**：60分
 - **スケジュール**：日曜日 15:00〜、月2回
 - **場所**：福岡市内レンタルスタジオ（詳細は後日）
-- **料金**：準備中
+- **料金**：
+  - グループレッスン：2,500円
+  - 個人レッスン：応相談
 
 ### SNS
-- **Instagram**：@hirokiplants
+- **Instagram**：[@hirokiplants](https://instagram.com/hirokiplants)
+
+## デプロイ情報
+
+- **リポジトリ**：https://github.com/infoHiroki/HirokiYoga
+- **公開URL**：https://infohiroki.github.io/HirokiYoga/
+- **ホスティング**：GitHub Pages
+
+## レスポンシブデザイン
+
+### ブレークポイント
+- **モバイル（〜767px）**：
+  - 全セクション1カラム
+  - Flexbox縦並びレイアウト
+  - プロフィール画像：130px
+  - フォント最適化
+
+- **タブレット（768px〜1023px）**：
+  - About：2カラムグリッド（画像 + 詳細）
+  - Lesson：2カラムグリッド
+  - Gallery：2カラムグリッド
+
+- **デスクトップ（1024px〜1279px）**：
+  - Story：2カラムテキスト
+  - Lesson：3カラムグリッド
+  - Gallery：3カラムグリッド
+  - プロフィール画像：180px
+
+- **大画面（1280px〜）**：
+  - Lesson：5カラムグリッド
+  - プロフィール画像：200px
+  - 最大余白とスペーシング
 
 ## 今後の更新予定
 
 - [ ] Googleフォームのリンク追加
 - [ ] スタジオ場所の決定・追加
-- [ ] 料金設定の追加
-- [ ] ヒーローセクションに背景画像を追加（オプション）
+- [x] 料金設定の追加
+- [x] DVDのAmazonリンク追加
+- [x] ファビコン設定
+- [x] モバイル完全対応
 
 ## 開発メモ
 
 ### デザイン原則
-- MVP（Minimum Viable Product）
-- KISS（Keep It Simple, Stupid）
-- YAGNI（You Aren't Gonna Need It）
-- DRY（Don't Repeat Yourself）
+- **モバイルファースト**：320px以上の全デバイス対応
+- **アクセシビリティ**：セマンティックHTML、適切なコントラスト
+- **パフォーマンス**：軽量JavaScript、最適化されたCSS
+- **保守性**：CSS変数、明確な命名規則
 
 ### 画像仕様
-- **プロフィール写真**：150px × 150px（正方形、object-fit: cover）
+- **プロフィール写真**：モバイル130px、タブレット150px、デスクトップ200px（正方形、object-fit: cover）
 - **ギャラリー**：レスポンシブ（モバイル1列、タブレット2列、デスクトップ3列）
+- **ファビコン**：SVG（モダンブラウザ）+ PNG（フォールバック）
 
 ### ブラウザ確認方法
 
 ```bash
+# ローカル確認
 open index.html
+
+# 公開サイト確認
+open https://infohiroki.github.io/HirokiYoga/
 ```
 
-## 制作日
+### Git運用
 
-2025年10月5日
+```bash
+# 変更をコミット
+git add .
+git commit -m "コミットメッセージ"
+git push
+
+# GitHub Pagesに自動デプロイ
+# mainブランチへのpushで自動的に公開サイトが更新される
+```
+
+## 制作履歴
+
+- **2025年10月5日**：初版作成
+- **2025年10月5日**：完全リデザイン（モバイルファースト）
+- **2025年10月5日**：料金設定追加（2,500円 / 応相談）
+- **2025年10月5日**：DVDのAmazonリンク追加
