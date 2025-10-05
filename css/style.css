@@ -1,0 +1,560 @@
+/* ================================
+   Reset & Base Styles
+   ================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    font-weight: 400;
+    line-height: 1.8;
+    color: #333;
+    background-color: #fff;
+    overflow-x: hidden;
+}
+
+h1, h2, h3, h4 {
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    font-weight: 700;
+}
+
+/* ================================
+   Color Variables
+   ================================ */
+
+:root {
+    --primary-yellow: #FFD166;
+    --light-yellow: #FFF4D6;
+    --dark-yellow: #F5C748;
+    --white: #FFFFFF;
+    --black: #333333;
+    --gray: #666666;
+}
+
+/* ================================
+   Utility Classes
+   ================================ */
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.section {
+    padding: 80px 0;
+    position: relative;
+}
+
+.section-title {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 60px;
+    color: var(--black);
+}
+
+/* ================================
+   Animations
+   ================================ */
+
+.fade-in {
+    opacity: 0;
+    animation: fadeIn 1s ease-in forwards;
+}
+
+.fade-in-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-in-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+/* ================================
+   Blob Shapes
+   ================================ */
+
+.blob {
+    position: absolute;
+    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+    opacity: 0.15;
+    z-index: -1;
+    animation: morph 8s ease-in-out infinite;
+}
+
+.blob-1 {
+    width: 300px;
+    height: 300px;
+    background: var(--primary-yellow);
+    top: 10%;
+    right: -100px;
+    animation-delay: 0s;
+}
+
+.blob-2 {
+    width: 250px;
+    height: 250px;
+    background: var(--dark-yellow);
+    bottom: 15%;
+    left: -80px;
+    animation-delay: 2s;
+}
+
+.blob-3 {
+    width: 400px;
+    height: 400px;
+    background: var(--primary-yellow);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation-delay: 1s;
+}
+
+@keyframes morph {
+    0%, 100% {
+        border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+        transform: rotate(0deg);
+    }
+    50% {
+        border-radius: 70% 30% 50% 50% / 30% 30% 70% 70%;
+        transform: rotate(180deg);
+    }
+}
+
+/* ================================
+   Hero Section
+   ================================ */
+
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--light-yellow) 0%, var(--white) 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-content {
+    text-align: center;
+    z-index: 1;
+    padding: 20px;
+}
+
+.hero-title {
+    font-size: 2.5rem;
+    line-height: 1.4;
+    color: var(--black);
+    margin-bottom: 20px;
+    animation-delay: 0.3s;
+}
+
+.hero-subtitle {
+    font-family: 'Comfortaa', cursive;
+    font-size: 1.2rem;
+    color: var(--gray);
+    font-weight: 300;
+    animation-delay: 0.6s;
+}
+
+.scroll-indicator {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    color: var(--gray);
+    font-size: 0.85rem;
+    animation: bounce 2s infinite;
+}
+
+.scroll-line {
+    width: 1px;
+    height: 40px;
+    background: var(--gray);
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateX(-50%) translateY(0);
+    }
+    50% {
+        transform: translateX(-50%) translateY(-10px);
+    }
+}
+
+/* ================================
+   Story Section
+   ================================ */
+
+.story {
+    background: var(--white);
+}
+
+.story-content {
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 1.05rem;
+    line-height: 2;
+}
+
+.story-content p {
+    margin-bottom: 1.5em;
+}
+
+/* ================================
+   Lesson Section
+   ================================ */
+
+.lesson {
+    background: var(--light-yellow);
+}
+
+.lesson-content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.lesson-card {
+    background: var(--white);
+    padding: 30px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.lesson-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+}
+
+.lesson-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    color: var(--black);
+}
+
+.lesson-card p {
+    font-size: 1rem;
+    color: var(--gray);
+    line-height: 1.8;
+}
+
+/* ================================
+   About Section
+   ================================ */
+
+.about {
+    background: var(--white);
+}
+
+.about-content {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.about-images {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.about-image {
+    width: 150px;
+    text-align: center;
+}
+
+.about-image img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 20px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    margin-bottom: 8px;
+}
+
+.image-caption {
+    font-size: 0.85rem;
+    color: var(--gray);
+    margin: 0;
+}
+
+.about-text h3 {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+    color: var(--black);
+}
+
+.about-section {
+    margin-bottom: 30px;
+}
+
+.about-section h4 {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    color: var(--black);
+}
+
+.about-section ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.about-section li {
+    padding: 8px 0;
+    padding-left: 25px;
+    position: relative;
+    color: var(--gray);
+}
+
+.about-section li::before {
+    content: "●";
+    position: absolute;
+    left: 0;
+    color: var(--primary-yellow);
+}
+
+.about-section p {
+    color: var(--gray);
+}
+
+/* ================================
+   Gallery Section
+   ================================ */
+
+.gallery {
+    background: var(--light-yellow);
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.gallery-item {
+    overflow: hidden;
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.05);
+}
+
+/* ================================
+   Contact Section
+   ================================ */
+
+.contact {
+    background: var(--white);
+    position: relative;
+    overflow: hidden;
+}
+
+.contact-content {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+.contact-text {
+    font-size: 1.1rem;
+    margin-bottom: 40px;
+    color: var(--gray);
+}
+
+.contact-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 18px 40px;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.btn-primary {
+    background: var(--primary-yellow);
+    color: var(--black);
+    box-shadow: 0 4px 20px rgba(255, 209, 102, 0.3);
+}
+
+.btn-primary:hover {
+    background: var(--dark-yellow);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 30px rgba(255, 209, 102, 0.4);
+}
+
+.btn-note {
+    font-size: 0.85rem;
+    opacity: 0.7;
+}
+
+.btn-instagram {
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    color: var(--white);
+    box-shadow: 0 4px 20px rgba(225, 48, 108, 0.3);
+}
+
+.btn-instagram:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 30px rgba(225, 48, 108, 0.4);
+}
+
+/* ================================
+   Footer
+   ================================ */
+
+.footer {
+    background: var(--black);
+    color: var(--white);
+    text-align: center;
+    padding: 30px 20px;
+}
+
+.footer p {
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+/* ================================
+   Responsive - Tablet
+   ================================ */
+
+@media (min-width: 768px) {
+    .hero-title {
+        font-size: 3.5rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.5rem;
+    }
+
+    .section {
+        padding: 100px 0;
+    }
+
+    .section-title {
+        font-size: 2.5rem;
+        margin-bottom: 80px;
+    }
+
+    .lesson-content {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+    }
+
+    .about-content {
+        flex-direction: row;
+        gap: 40px;
+        align-items: flex-start;
+    }
+
+    .about-images {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .about-image {
+        flex-shrink: 0;
+    }
+
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+    }
+
+    .contact-buttons {
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .blob-1 {
+        width: 400px;
+        height: 400px;
+    }
+
+    .blob-2 {
+        width: 350px;
+        height: 350px;
+    }
+
+    .blob-3 {
+        width: 500px;
+        height: 500px;
+    }
+}
+
+/* ================================
+   Responsive - Desktop
+   ================================ */
+
+@media (min-width: 1024px) {
+    .hero-title {
+        font-size: 4.5rem;
+    }
+
+    .section-title {
+        font-size: 3rem;
+    }
+
+    .lesson-content {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .gallery-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
