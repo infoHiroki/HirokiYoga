@@ -275,6 +275,18 @@ section {
     line-height: 1.9;
 }
 
+.dvd-link {
+    color: var(--primary-yellow);
+    text-decoration: none;
+    border-bottom: 1px solid var(--primary-yellow);
+    transition: all 0.3s ease;
+}
+
+.dvd-link:hover {
+    color: var(--dark-yellow);
+    border-bottom-color: var(--dark-yellow);
+}
+
 /* ================================
    Story Section
    ================================ */
