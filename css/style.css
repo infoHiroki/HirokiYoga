@@ -2,7 +2,9 @@
    CSS Reset & Base
    ================================ */
 
-* {
+*,
+*::before,
+*::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -21,6 +23,8 @@
 
 html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
+    width: 100%;
 }
 
 body {
@@ -30,6 +34,8 @@ body {
     color: var(--black);
     background-color: var(--white);
     overflow-x: hidden;
+    width: 100%;
+    min-width: 320px;
 }
 
 h1, h2, h3, h4 {
@@ -49,14 +55,17 @@ img {
    ================================ */
 
 .container {
+    width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 16px;
-    width: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 section {
-    padding: 60px 0;
+    width: 100%;
+    padding: 50px 0;
+    overflow-x: hidden;
 }
 
 .section-title {
@@ -81,6 +90,7 @@ section {
    ================================ */
 
 .hero {
+    width: 100%;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -100,37 +110,44 @@ section {
     opacity: 0.1;
     background-image: radial-gradient(circle at 20% 50%, var(--primary-yellow) 0%, transparent 50%),
                       radial-gradient(circle at 80% 80%, var(--primary-yellow) 0%, transparent 50%);
+    pointer-events: none;
 }
 
 .hero-content {
+    width: 100%;
+    max-width: 100%;
     text-align: center;
     z-index: 1;
-    padding: 40px 24px;
+    padding: 20px;
 }
 
 .hero-title {
-    font-size: 2.5rem;
-    margin-bottom: 24px;
+    font-size: 2rem;
+    margin-bottom: 20px;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 4px;
+    width: 100%;
+    max-width: 100%;
 }
 
 .hero-title-main {
     font-size: 1em;
     color: var(--black);
+    word-wrap: break-word;
 }
 
 .hero-title-sub {
     font-size: 1em;
     color: var(--black);
+    word-wrap: break-word;
 }
 
 .hero-tagline {
-    font-size: 1rem;
+    font-size: 0.9rem;
     color: var(--gray);
     font-weight: 300;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.05em;
 }
 
 .scroll-down {
@@ -157,32 +174,35 @@ section {
 }
 
 .about-grid {
-    display: grid;
-    gap: 40px;
+    display: block;
+    width: 100%;
     max-width: 1000px;
     margin: 0 auto;
-    width: 100%;
 }
 
 .about-profile {
+    width: 100%;
     text-align: center;
+    margin-bottom: 40px;
 }
 
 .profile-images {
     display: flex;
-    gap: 16px;
+    gap: 12px;
     justify-content: center;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
     flex-wrap: wrap;
+    width: 100%;
 }
 
 .profile-image-item {
     position: relative;
+    flex-shrink: 0;
 }
 
 .profile-image-item img {
-    width: 140px;
-    height: 140px;
+    width: 130px;
+    height: 130px;
     object-fit: cover;
     border-radius: 12px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
@@ -196,17 +216,18 @@ section {
 }
 
 .profile-name {
-    font-size: 1.75rem;
+    font-size: 1.5rem;
     color: var(--black);
     margin-bottom: 8px;
     display: flex;
     flex-direction: column;
     gap: 8px;
     align-items: center;
+    width: 100%;
 }
 
 .profile-name-en {
-    font-size: 1rem;
+    font-size: 0.95rem;
     font-weight: 400;
     color: var(--gray);
     font-family: 'Noto Sans JP', sans-serif;
@@ -214,9 +235,10 @@ section {
 }
 
 .about-details {
+    width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 40px;
+    gap: 32px;
 }
 
 .detail-section h4 {
@@ -283,18 +305,19 @@ section {
 }
 
 .lesson-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
     max-width: 1100px;
     margin: 0 auto;
-    width: 100%;
 }
 
 .lesson-card {
+    width: 100%;
     background: var(--white);
     padding: 24px 20px;
-    border-radius: 16px;
+    border-radius: 12px;
     text-align: center;
     border: 1px solid var(--border);
     transition: all 0.3s ease;
@@ -337,15 +360,16 @@ section {
 }
 
 .gallery-grid {
-    display: grid;
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
     gap: 16px;
+    width: 100%;
     max-width: 1000px;
     margin: 0 auto;
-    width: 100%;
 }
 
 .gallery-item {
+    width: 100%;
     overflow: hidden;
     border-radius: 12px;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
@@ -386,23 +410,25 @@ section {
     display: flex;
     flex-direction: column;
     gap: 12px;
+    width: 100%;
     max-width: 500px;
     margin: 0 auto;
-    width: 100%;
 }
 
 .btn {
-    display: inline-flex;
+    width: 100%;
+    display: flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
-    padding: 14px 24px;
+    padding: 14px 20px;
     border-radius: 50px;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     font-weight: 500;
     text-decoration: none;
     transition: all 0.3s ease;
     text-align: center;
+    box-sizing: border-box;
 }
 
 .btn-primary {
@@ -455,48 +481,52 @@ section {
 
 @media (min-width: 768px) {
     .container {
-        padding: 0 24px;
+        padding-left: 32px;
+        padding-right: 32px;
     }
 
     section {
-        padding: 80px 0;
+        padding: 70px 0;
     }
 
     .hero-title {
-        font-size: 3.5rem;
+        font-size: 3rem;
     }
 
     .hero-tagline {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
     }
 
     .section-title {
-        font-size: 2.5rem;
-        margin-bottom: 60px;
+        font-size: 2.25rem;
+        margin-bottom: 50px;
     }
 
     .about-grid {
+        display: grid;
         grid-template-columns: 1fr 1.5fr;
-        gap: 60px;
+        gap: 50px;
         align-items: start;
     }
 
     .about-profile {
         text-align: left;
+        margin-bottom: 0;
     }
 
     .profile-images {
         justify-content: flex-start;
-        gap: 20px;
+        gap: 16px;
     }
 
     .profile-image-item img {
-        width: 160px;
-        height: 160px;
+        width: 150px;
+        height: 150px;
     }
 
     .profile-name {
         align-items: flex-start;
+        font-size: 1.65rem;
     }
 
     .story-content {
@@ -504,8 +534,9 @@ section {
     }
 
     .lesson-grid {
+        display: grid;
         grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
+        gap: 16px;
     }
 
     .lesson-card {
@@ -513,8 +544,9 @@ section {
     }
 
     .gallery-grid {
+        display: grid;
         grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
+        gap: 16px;
     }
 
     .gallery-item img {
@@ -523,14 +555,15 @@ section {
 
     .contact-buttons {
         flex-direction: row;
-        gap: 16px;
+        gap: 12px;
         justify-content: center;
     }
 
     .btn {
+        width: auto;
         font-size: 1rem;
-        padding: 16px 32px;
-        gap: 12px;
+        padding: 16px 28px;
+        gap: 10px;
     }
 }
 
@@ -540,9 +573,62 @@ section {
 
 @media (min-width: 1024px) {
     .container {
-        padding: 0 40px;
+        padding-left: 40px;
+        padding-right: 40px;
     }
 
+    section {
+        padding: 90px 0;
+    }
+
+    .hero-title {
+        font-size: 4rem;
+    }
+
+    .section-title {
+        font-size: 2.75rem;
+        margin-bottom: 70px;
+    }
+
+    .about-grid {
+        gap: 70px;
+    }
+
+    .profile-image-item img {
+        width: 180px;
+        height: 180px;
+    }
+
+    .profile-name {
+        font-size: 1.85rem;
+    }
+
+    .story-content {
+        columns: 2;
+        column-gap: 60px;
+        font-size: 1.1rem;
+    }
+
+    .lesson-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
+
+    .lesson-card {
+        padding: 30px 24px;
+    }
+
+    .gallery-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
+
+    .gallery-item img {
+        height: 280px;
+    }
+}
+
+@media (min-width: 1280px) {
     section {
         padding: 100px 0;
     }
@@ -553,7 +639,6 @@ section {
 
     .section-title {
         font-size: 3rem;
-        margin-bottom: 80px;
     }
 
     .about-grid {
@@ -569,38 +654,17 @@ section {
         font-size: 2rem;
     }
 
-    .story-content {
-        columns: 2;
-        column-gap: 60px;
-        font-size: 1.1rem;
-    }
-
-    .lesson-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 24px;
-    }
-
-    .lesson-card {
-        padding: 32px 24px;
-    }
-
-    .gallery-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 24px;
-    }
-
-    .gallery-item img {
-        height: 300px;
-    }
-}
-
-@media (min-width: 1280px) {
     .lesson-grid {
         grid-template-columns: repeat(5, 1fr);
+        gap: 20px;
     }
 
     .lesson-card {
         padding: 28px 20px;
+    }
+
+    .gallery-item img {
+        height: 300px;
     }
 }
 
