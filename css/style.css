@@ -188,31 +188,21 @@ section {
 
 .profile-images {
     display: flex;
-    gap: 12px;
     justify-content: center;
     margin-bottom: 20px;
-    flex-wrap: wrap;
     width: 100%;
 }
 
 .profile-image-item {
     position: relative;
-    flex-shrink: 0;
 }
 
 .profile-image-item img {
-    width: 130px;
-    height: 130px;
+    width: 150px;
+    height: 150px;
     object-fit: cover;
     border-radius: 12px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-}
-
-.image-year {
-    display: block;
-    margin-top: 12px;
-    font-size: 0.9rem;
-    color: var(--gray);
 }
 
 .profile-name {
@@ -418,6 +408,85 @@ section {
     color: var(--gray);
 }
 
+/* 予約フォーム */
+.reservation-form {
+    max-width: 800px;
+    margin: 0 auto 40px;
+    background: var(--light-yellow);
+    border-radius: 16px;
+    padding: 32px 20px;
+}
+
+.form-title {
+    font-size: 1.5rem;
+    margin-bottom: 24px;
+    color: var(--black);
+    text-align: center;
+}
+
+.form-placeholder {
+    background: var(--white);
+    border: 2px dashed var(--border);
+    border-radius: 12px;
+    padding: 32px 24px;
+    color: var(--gray);
+    text-align: left;
+}
+
+.form-placeholder p:first-child {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--black);
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.placeholder-note {
+    font-size: 0.95rem;
+    margin: 20px 0 12px;
+    font-weight: 500;
+}
+
+.placeholder-steps {
+    margin-left: 20px;
+    line-height: 1.8;
+    font-size: 0.9rem;
+}
+
+.placeholder-steps li {
+    margin-bottom: 8px;
+}
+
+/* Googleフォーム iframe 用スタイル */
+.reservation-form iframe {
+    width: 100%;
+    min-height: 800px;
+    border: none;
+    border-radius: 8px;
+}
+
+/* 区切り線 */
+.contact-divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 40px auto;
+    max-width: 500px;
+}
+
+.contact-divider::before,
+.contact-divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid var(--border);
+}
+
+.contact-divider span {
+    padding: 0 20px;
+    color: var(--gray);
+    font-size: 0.9rem;
+}
+
 .contact-buttons {
     display: flex;
     flex-direction: column;
@@ -526,14 +595,9 @@ section {
         margin-bottom: 0;
     }
 
-    .profile-images {
-        justify-content: flex-start;
-        gap: 16px;
-    }
-
     .profile-image-item img {
-        width: 150px;
-        height: 150px;
+        width: 160px;
+        height: 160px;
     }
 
     .profile-name {
@@ -607,8 +671,8 @@ section {
     }
 
     .profile-image-item img {
-        width: 180px;
-        height: 180px;
+        width: 200px;
+        height: 200px;
     }
 
     .profile-name {
@@ -658,8 +722,8 @@ section {
     }
 
     .profile-image-item img {
-        width: 200px;
-        height: 200px;
+        width: 220px;
+        height: 220px;
     }
 
     .profile-name {
