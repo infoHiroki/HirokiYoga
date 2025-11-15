@@ -362,16 +362,16 @@ section {
 }
 
 .gallery-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
+    column-count: 1;
+    column-gap: 16px;
     width: 100%;
     max-width: 1000px;
     margin: 0 auto;
 }
 
 .gallery-item {
-    width: 100%;
+    break-inside: avoid;
+    margin-bottom: 16px;
     overflow: hidden;
     border-radius: 12px;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
@@ -380,12 +380,13 @@ section {
 
 .gallery-item:hover {
     transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
 }
 
 .gallery-item img {
     width: 100%;
-    height: 240px;
-    object-fit: cover;
+    height: auto;
+    display: block;
     transition: transform 0.3s ease;
 }
 
@@ -412,9 +413,6 @@ section {
 .reservation-form {
     max-width: 800px;
     margin: 0 auto 40px;
-    background: var(--light-yellow);
-    border-radius: 16px;
-    padding: 32px 20px;
 }
 
 .form-title {
@@ -462,7 +460,6 @@ section {
     width: 100%;
     min-height: 800px;
     border: none;
-    border-radius: 8px;
 }
 
 /* 区切り線 */
@@ -591,8 +588,12 @@ section {
     }
 
     .about-profile {
-        text-align: left;
+        text-align: center;
         margin-bottom: 0;
+    }
+
+    .profile-images {
+        justify-content: center;
     }
 
     .profile-image-item img {
@@ -601,7 +602,7 @@ section {
     }
 
     .profile-name {
-        align-items: flex-start;
+        align-items: center;
         font-size: 1.65rem;
     }
 
@@ -620,13 +621,8 @@ section {
     }
 
     .gallery-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 16px;
-    }
-
-    .gallery-item img {
-        height: 260px;
+        column-count: 2;
+        column-gap: 16px;
     }
 
     .contact-buttons {
@@ -695,12 +691,12 @@ section {
     }
 
     .gallery-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 20px;
+        column-count: 3;
+        column-gap: 20px;
     }
 
-    .gallery-item img {
-        height: 280px;
+    .gallery-item {
+        margin-bottom: 20px;
     }
 }
 
@@ -739,9 +735,77 @@ section {
         padding: 28px 20px;
     }
 
-    .gallery-item img {
-        height: 300px;
+}
+
+/* ================================
+   画像拡大モーダル
+   ================================ */
+
+.image-modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    padding: 20px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.95);
+    animation: fadeIn 0.3s ease;
+}
+
+.image-modal-content {
+    margin: auto;
+    display: block;
+    max-width: 90%;
+    max-height: 85vh;
+    object-fit: contain;
+    animation: zoomIn 0.3s ease;
+}
+
+@keyframes zoomIn {
+    from {
+        transform: scale(0.7);
+        opacity: 0;
     }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.image-modal-close {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: var(--white);
+    font-size: 50px;
+    font-weight: 300;
+    transition: 0.3s;
+    cursor: pointer;
+    z-index: 10000;
+    line-height: 1;
+}
+
+.image-modal-close:hover,
+.image-modal-close:focus {
+    color: var(--primary-yellow);
+}
+
+.image-modal-caption {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+    color: var(--light-gray);
+    padding: 20px 0;
+    font-size: 1rem;
+}
+
+.gallery-item {
+    cursor: pointer;
 }
 
 /* ================================
