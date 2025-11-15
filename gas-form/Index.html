@@ -5,6 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hiroki Yoga レッスン予約</title>
 
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;600&display=swap" rel="stylesheet">
+
   <style>
     /* ============================================
        リセット & ベース
@@ -29,11 +34,12 @@
     }
 
     body {
-      font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-weight: 400;
       line-height: 1.8;
       color: var(--black);
       background: linear-gradient(135deg, var(--light-yellow) 0%, var(--white) 100%);
-      padding: 20px;
+      padding: 40px 20px;
       min-height: 100vh;
     }
 
@@ -41,12 +47,21 @@
        コンテナ
        ============================================ */
     .container {
-      max-width: 600px;
+      max-width: 700px;
       margin: 0 auto;
       background: var(--white);
-      border-radius: 16px;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-      padding: 32px 24px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      padding: 50px 40px;
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding: 20px 12px;
+      }
+      .container {
+        padding: 32px 24px;
+      }
     }
 
     /* ============================================
@@ -54,34 +69,37 @@
        ============================================ */
     .header {
       text-align: center;
-      margin-bottom: 32px;
-      padding-bottom: 24px;
-      border-bottom: 2px solid var(--primary-yellow);
+      margin-bottom: 50px;
+      padding-bottom: 30px;
+      border-bottom: 3px solid var(--primary-yellow);
     }
 
     .header h1 {
       font-family: 'Noto Serif JP', serif;
-      font-size: 1.75rem;
-      margin-bottom: 8px;
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 12px;
       color: var(--black);
+      line-height: 1.4;
     }
 
     .header p {
       color: var(--gray);
-      font-size: 0.95rem;
+      font-size: 1rem;
+      font-weight: 300;
     }
 
     /* ============================================
        フォーム
        ============================================ */
     .form-group {
-      margin-bottom: 24px;
+      margin-bottom: 28px;
     }
 
     .form-group label {
       display: block;
       font-weight: 500;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
       color: var(--black);
       font-size: 0.95rem;
     }
@@ -89,21 +107,24 @@
     .form-group label .required {
       color: var(--error);
       margin-left: 4px;
+      font-size: 0.9rem;
     }
 
     .form-group input[type="text"],
     .form-group input[type="email"],
     .form-group input[type="tel"],
+    .form-group input[type="date"],
     .form-group select,
     .form-group textarea {
       width: 100%;
-      padding: 12px 16px;
-      border: 2px solid var(--border);
+      padding: 14px 16px;
+      border: 1px solid var(--border);
       border-radius: 8px;
       font-size: 1rem;
       font-family: inherit;
       transition: all 0.3s ease;
       background: var(--white);
+      color: var(--black);
     }
 
     .form-group input:focus,
@@ -111,18 +132,20 @@
     .form-group textarea:focus {
       outline: none;
       border-color: var(--primary-yellow);
-      box-shadow: 0 0 0 3px rgba(255, 209, 102, 0.2);
+      box-shadow: 0 0 0 3px rgba(255, 209, 102, 0.15);
     }
 
     .form-group textarea {
-      min-height: 100px;
+      min-height: 120px;
       resize: vertical;
+      line-height: 1.6;
     }
 
     .form-group .helper-text {
       font-size: 0.85rem;
       color: var(--gray);
-      margin-top: 6px;
+      margin-top: 8px;
+      line-height: 1.5;
     }
 
     /* ============================================
@@ -130,7 +153,7 @@
        ============================================ */
     .btn-submit {
       width: 100%;
-      padding: 16px;
+      padding: 18px 24px;
       background: var(--primary-yellow);
       color: var(--black);
       border: none;
@@ -141,6 +164,7 @@
       transition: all 0.3s ease;
       box-shadow: 0 4px 16px rgba(255, 209, 102, 0.3);
       font-family: inherit;
+      margin-top: 20px;
     }
 
     .btn-submit:hover:not(:disabled) {
@@ -193,12 +217,104 @@
     }
 
     /* ============================================
+       モーダル
+       ============================================ */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .modal-overlay.show {
+      display: flex;
+    }
+
+    .modal {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 40px 32px;
+      max-width: 500px;
+      width: 90%;
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      animation: slideUp 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .modal-icon {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 24px;
+      background: var(--primary-yellow);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+    }
+
+    .modal h2 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 1.75rem;
+      margin-bottom: 16px;
+      color: var(--black);
+    }
+
+    .modal p {
+      color: var(--gray);
+      font-size: 1rem;
+      line-height: 1.7;
+      margin-bottom: 30px;
+    }
+
+    .modal-btn {
+      padding: 14px 40px;
+      background: var(--primary-yellow);
+      color: var(--black);
+      border: none;
+      border-radius: 50px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: inherit;
+    }
+
+    .modal-btn:hover {
+      background: var(--dark-yellow);
+      transform: translateY(-2px);
+    }
+
+    /* ============================================
        ローディング
        ============================================ */
     .loading {
       display: none;
       text-align: center;
-      margin: 20px 0;
+      margin: 30px 0;
     }
 
     .loading.show {
@@ -209,8 +325,8 @@
       border: 3px solid var(--light-gray);
       border-top: 3px solid var(--primary-yellow);
       border-radius: 50%;
-      width: 40px;
-      height: 40px;
+      width: 50px;
+      height: 50px;
       animation: spin 1s linear infinite;
       margin: 0 auto;
     }
@@ -220,21 +336,10 @@
       100% { transform: rotate(360deg); }
     }
 
-    /* ============================================
-       レスポンシブ
-       ============================================ */
-    @media (max-width: 640px) {
-      body {
-        padding: 12px;
-      }
-
-      .container {
-        padding: 24px 16px;
-      }
-
-      .header h1 {
-        font-size: 1.5rem;
-      }
+    .loading p {
+      margin-top: 16px;
+      color: var(--gray);
+      font-size: 0.95rem;
     }
   </style>
 </head>
@@ -252,7 +357,7 @@
     <!-- ローディング -->
     <div id="loading" class="loading">
       <div class="spinner"></div>
-      <p style="margin-top: 12px; color: var(--gray);">送信中...</p>
+      <p>送信中...</p>
     </div>
 
     <!-- フォーム -->
@@ -279,14 +384,15 @@
       <!-- 希望日時（第1希望） -->
       <div class="form-group">
         <label for="datetime1">希望日時（第1希望）<span class="required">*</span></label>
-        <input type="text" id="datetime1" name="datetime1" required placeholder="例：12月15日（日）15:00">
-        <div class="helper-text">レッスンは日曜日15:00〜、月2回開催</div>
+        <input type="date" id="datetime1" name="datetime1" required>
+        <div class="helper-text">レッスンは日曜日15:00〜、月2回開催。日曜日を選択してください。</div>
       </div>
 
       <!-- 希望日時（第2希望） -->
       <div class="form-group">
         <label for="datetime2">希望日時（第2希望）</label>
-        <input type="text" id="datetime2" name="datetime2" placeholder="例：12月22日（日）15:00">
+        <input type="date" id="datetime2" name="datetime2">
+        <div class="helper-text">第2希望がある場合は選択してください（任意）</div>
       </div>
 
       <!-- レッスン形式 -->
@@ -310,7 +416,35 @@
     </form>
   </div>
 
+  <!-- 成功モーダル -->
+  <div id="successModal" class="modal-overlay">
+    <div class="modal">
+      <div class="modal-icon">✓</div>
+      <h2>予約を受け付けました</h2>
+      <p>ご予約ありがとうございます。<br>確認のメールをお送りしましたので、ご確認ください。<br><br>日程調整の上、改めてご連絡させていただきます。</p>
+      <button class="modal-btn" onclick="closeModal()">閉じる</button>
+    </div>
+  </div>
+
   <script>
+    // 日曜日のみ選択可能にする（オプション：警告表示）
+    const dateInputs = document.querySelectorAll('input[type="date"]');
+    dateInputs.forEach(input => {
+      input.addEventListener('change', function() {
+        const selectedDate = new Date(this.value);
+        if (selectedDate.getDay() !== 0) { // 0 = 日曜日
+          alert('レッスンは日曜日のみ開催しています。日曜日を選択してください。');
+          this.value = '';
+        }
+      });
+    });
+
+    // モーダルを閉じる
+    function closeModal() {
+      document.getElementById('successModal').classList.remove('show');
+      document.getElementById('reservationForm').reset();
+    }
+
     // フォーム送信処理
     document.getElementById('reservationForm').addEventListener('submit', function(e) {
       e.preventDefault();
@@ -324,13 +458,27 @@
       loading.classList.add('show');
       messageDiv.classList.remove('show');
 
+      // 日付をフォーマット
+      const datetime1 = document.getElementById('datetime1').value;
+      const datetime2 = document.getElementById('datetime2').value;
+
+      const formatDate = (dateStr) => {
+        if (!dateStr) return '';
+        const date = new Date(dateStr);
+        const month = date.getMonth() + 1;
+        const day = date.getDate();
+        const weekdays = ['日', '月', '火', '水', '木', '金', '土'];
+        const weekday = weekdays[date.getDay()];
+        return `${month}月${day}日（${weekday}）15:00`;
+      };
+
       // フォームデータ取得
       const formData = {
         name: document.getElementById('name').value,
         email: document.getElementById('email').value,
         phone: document.getElementById('phone').value,
-        datetime1: document.getElementById('datetime1').value,
-        datetime2: document.getElementById('datetime2').value,
+        datetime1: formatDate(datetime1),
+        datetime2: formatDate(datetime2),
         lessonType: document.getElementById('lessonType').value,
         message: document.getElementById('message').value
       };
@@ -342,28 +490,32 @@
           submitBtn.disabled = false;
 
           if (response.success) {
-            messageDiv.textContent = response.message;
-            messageDiv.className = 'message success show';
-            // フォームをリセット
-            document.getElementById('reservationForm').reset();
+            // 成功モーダルを表示
+            document.getElementById('successModal').classList.add('show');
           } else {
             messageDiv.textContent = response.message;
             messageDiv.className = 'message error show';
+            // ページトップにスクロール
+            window.scrollTo({ top: 0, behavior: 'smooth' });
           }
-
-          // 3秒後にメッセージを消す
-          setTimeout(() => {
-            messageDiv.classList.remove('show');
-          }, 5000);
         })
         .withFailureHandler(function(error) {
           loading.classList.remove('show');
           submitBtn.disabled = false;
           messageDiv.textContent = '送信に失敗しました。お手数ですがInstagramからお問い合わせください。';
           messageDiv.className = 'message error show';
+          // ページトップにスクロール
+          window.scrollTo({ top: 0, behavior: 'smooth' });
           console.error('エラー:', error);
         })
         .submitForm(formData);
+    });
+
+    // モーダルの外側クリックで閉じる
+    document.getElementById('successModal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeModal();
+      }
     });
   </script>
 </body>
