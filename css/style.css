@@ -256,12 +256,14 @@ section:not(.hero) {
 .hero-title {
     font-size: clamp(3rem, 10vw, 8rem);
     margin-bottom: var(--spacing-md);
-    background: var(--gradient-neon);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: var(--text-primary);
     text-transform: uppercase;
     letter-spacing: 0.05em;
+    text-shadow:
+        0 0 30px rgba(0, 245, 255, 0.8),
+        0 0 60px rgba(0, 245, 255, 0.5),
+        0 4px 20px rgba(0, 0, 0, 0.9);
+    font-weight: 900;
 }
 
 .hero-tagline {
@@ -269,13 +271,15 @@ section:not(.hero) {
     color: var(--text-primary);
     margin-bottom: var(--spacing-sm);
     font-weight: 300;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
 }
 
 .hero-subtitle {
     font-size: clamp(0.9rem, 2vw, 1.2rem);
-    color: var(--text-muted);
+    color: var(--text-secondary);
     letter-spacing: 0.2em;
     text-transform: uppercase;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
 }
 
 .scroll-indicator {
@@ -351,7 +355,7 @@ section:not(.hero) {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--bg-darker);
+    background: transparent;
 }
 
 .image-wrapper {
@@ -484,6 +488,7 @@ section:not(.hero) {
     padding-left: var(--spacing-md);
     position: relative;
     color: var(--text-secondary);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
 }
 
 .card-list li::before {
@@ -496,6 +501,7 @@ section:not(.hero) {
 .card-text {
     color: var(--text-secondary);
     line-height: 1.8;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
 }
 
 .neon-link {
