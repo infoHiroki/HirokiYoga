@@ -36,7 +36,7 @@ function initParticles() {
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
     // Particle system
-    const particleCount = window.innerWidth < 768 ? 500 : 1000;
+    const particleCount = window.innerWidth < 768 ? 800 : 2000;
     const positions = new Float32Array(particleCount * 3);
     const colors = new Float32Array(particleCount * 3);
     const sizes = new Float32Array(particleCount);
@@ -72,10 +72,10 @@ function initParticles() {
     geometry.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
 
     const material = new THREE.PointsMaterial({
-        size: 0.15,
+        size: 0.08,
         vertexColors: true,
         transparent: true,
-        opacity: 0.9,
+        opacity: 0.85,
         sizeAttenuation: true,
         blending: THREE.AdditiveBlending
     });
