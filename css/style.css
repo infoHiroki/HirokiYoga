@@ -347,8 +347,8 @@ h1, h2, h3, h4 {
 
 .image-wrapper {
     position: relative;
-    width: 60%;
-    max-width: 400px;
+    width: 40%;
+    max-width: 280px;
 }
 
 .profile-img {
