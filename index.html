@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hiroki Takamura ヨガレッスン</title>
-    <meta name="description" content="ゆっくり深く、自分を知るヨガ。福岡でシヴァナンダヨガのレッスンを行っています。">
+    <title>Body in Motion - Hiroki Takamura Yoga</title>
+    <meta name="description" content="動きの中に、静寂を見つける。福岡でシヴァナンダヨガのレッスンを行っています。">
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
@@ -14,48 +14,80 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@300;400;500;600;700;900&family=JetBrains+Mono:wght@400;700&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+    <!-- GSAP & Three.js -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js" defer></script>
 
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <!-- Particle Background Canvas -->
+    <canvas id="particle-bg"></canvas>
+
+    <!-- Progress Indicator -->
+    <div class="progress-indicator">
+        <span class="current-section">01</span>
+        <div class="progress-bar"></div>
+    </div>
+
+    <!-- Navigation (minimal) -->
+    <nav class="main-nav">
+        <div class="nav-links">
+            <a href="#hero" class="nav-link">Home</a>
+            <a href="#about" class="nav-link">About</a>
+            <a href="#story" class="nav-link">Story</a>
+            <a href="#lesson" class="nav-link">Lesson</a>
+            <a href="#contact" class="nav-link">Contact</a>
+        </div>
+    </nav>
+
     <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-background">
-            <div class="gradient-orb orb-1"></div>
-            <div class="gradient-orb orb-2"></div>
-            <div class="gradient-orb orb-3"></div>
+    <section id="hero" class="hero fullscreen">
+        <div class="hero-bg-animation">
+            <svg class="wave-pattern" viewBox="0 0 1200 400" preserveAspectRatio="none">
+                <path class="wave-path" d="M0,100 Q300,150 600,100 T1200,100 L1200,400 L0,400 Z" />
+            </svg>
         </div>
         <div class="hero-content">
-            <h1 class="hero-title">
-                <span class="hero-title-main">ゆっくり深く、</span>
-                <span class="hero-title-sub">自分を知るヨガ</span>
-            </h1>
-            <p class="hero-tagline">Sivananda Yoga in Fukuoka</p>
+            <h1 class="hero-title" data-split>Body in Motion</h1>
+            <p class="hero-tagline">動きの中に、静寂を見つける</p>
+            <div class="hero-subtitle">Sivananda Yoga in Fukuoka</div>
         </div>
-        <div class="scroll-down">
-            <span>Scroll</span>
+        <div class="scroll-indicator">
+            <span class="scroll-text">SCROLL</span>
+            <div class="scroll-line"></div>
         </div>
+        <div class="cursor-glow"></div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container">
-            <h2 class="section-title">講師紹介</h2>
-            <div class="about-grid">
-                <div class="about-profile">
-                    <div class="profile-images">
-                        <div class="profile-image-item">
-                            <img src="images/profile-2016.jpg" alt="高村裕貴">
-                        </div>
-                    </div>
-                    <h3 class="profile-name">高村 裕貴<span class="profile-name-en">Hiroki Takamura</span></h3>
+    <!-- About Section (Split Screen) -->
+    <section id="about" class="about fullscreen split-screen">
+        <div class="fixed-image">
+            <div class="image-wrapper">
+                <img src="images/profile.jpg" alt="高村裕貴" class="profile-img">
+                <div class="image-glow"></div>
+            </div>
+        </div>
+        <div class="scrollable-content">
+            <div class="content-inner">
+                <h2 class="section-title">
+                    <span class="title-number">02</span>
+                    講師紹介
+                </h2>
+
+                <div class="profile-header">
+                    <h3 class="profile-name">高村 裕貴</h3>
+                    <p class="profile-name-en">Hiroki Takamura</p>
                 </div>
 
-                <div class="about-details">
-                    <div class="detail-section">
-                        <h4>経歴</h4>
-                        <ul class="detail-list">
+                <div class="info-cards">
+                    <div class="info-card" data-tilt>
+                        <div class="card-glow"></div>
+                        <h4 class="card-title">経歴</h4>
+                        <ul class="card-list">
                             <li>1986年生まれ、東京出身</li>
                             <li>東洋大学文学部印度哲学科卒業</li>
                             <li>15歳からダンス（カポエラ、ストリートダンス、コンテンポラリー）</li>
@@ -63,117 +95,175 @@
                         </ul>
                     </div>
 
-                    <div class="detail-section">
-                        <h4>資格・実績</h4>
-                        <ul class="detail-list">
+                    <div class="info-card" data-tilt>
+                        <div class="card-glow"></div>
+                        <h4 class="card-title">資格・実績</h4>
+                        <ul class="card-list">
                             <li>シヴァナンダヨガTTC修了（2015年、タイ・チェンライ）</li>
-                            <li>DVD監修「<a href="https://www.amazon.co.jp/%E3%81%8A%E5%AE%B6%E3%81%A7%E5%87%BA%E6%9D%A5%E3%82%8B%E3%81%AF%E3%81%98%E3%82%81%E3%81%A6%E3%81%AE%E3%82%B7%E3%83%B4%E3%82%A1%E3%83%8A%E3%83%B3%E3%83%80%E3%83%A8%E3%82%AC-Beauty-Health-DVD-motomi/dp/B01GG4VCLY" target="_blank" rel="noopener noreferrer" class="dvd-link">お家で出来るはじめてのシヴァナンダヨガ for Beauty and Health</a>」</li>
+                            <li>DVD監修「<a href="https://www.amazon.co.jp/%E3%81%8A%E5%AE%B6%E3%81%A7%E5%87%BA%E6%9D%A5%E3%82%8B%E3%81%AF%E3%81%98%E3%82%81%E3%81%A6%E3%81%AE%E3%82%B7%E3%83%B4%E3%82%A1%E3%83%8A%E3%83%B3%E3%83%80%E3%83%A8%E3%82%AC-Beauty-Health-DVD-motomi/dp/B01GG4VCLY" target="_blank" rel="noopener noreferrer" class="neon-link">お家で出来るはじめてのシヴァナンダヨガ</a>」</li>
                             <li>東京での指導経験（東大前、太極拳教室など）</li>
                         </ul>
                     </div>
 
-                    <div class="detail-section">
-                        <h4>指導方針</h4>
-                        <p class="detail-text">大学で印度哲学を学び、思想的な部分と肉体的な部分のバランスを重視してきました。ダンスで培った身体への理解と、呼吸を大切にした指導を心がけています。</p>
+                    <div class="info-card" data-tilt>
+                        <div class="card-glow"></div>
+                        <h4 class="card-title">指導方針</h4>
+                        <p class="card-text">大学で印度哲学を学び、思想的な部分と肉体的な部分のバランスを重視してきました。ダンスで培った身体への理解と、呼吸を大切にした指導を心がけています。</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Story Section -->
-    <section id="story" class="story">
-        <div class="container">
-            <h2 class="section-title">印度哲学と私のヨガの旅</h2>
-            <div class="story-content">
-                <p>印度哲学科――多くの人には馴染みのない学問。</p>
+    <!-- Story Section (Horizontal Timeline) -->
+    <section id="story" class="story fullscreen">
+        <div class="story-container">
+            <h2 class="section-title">
+                <span class="title-number">03</span>
+                印度哲学と私のヨガの旅
+            </h2>
+            <div class="timeline-wrapper">
+                <div class="timeline-track">
+                    <!-- Timeline Item 1 -->
+                    <div class="timeline-item">
+                        <div class="timeline-year">2000s</div>
+                        <div class="timeline-content">
+                            <h3>哲学への道</h3>
+                            <p>高校時代、仏教と哲学に興味を持ち、東洋大学文学部印度哲学科への自己推薦入学を決意。サンスクリット語が必修言語でした。</p>
+                        </div>
+                    </div>
 
-                <p>高校時代、私の興味は仏教と哲学にあり、その道を追求するため、東洋大学文学部印度哲学科への自己推薦入学を決意しました。</p>
+                    <!-- Timeline Item 2 -->
+                    <div class="timeline-item">
+                        <div class="timeline-year">2010s</div>
+                        <div class="timeline-content">
+                            <h3>ヨガとの出会い</h3>
+                            <p>大学の講義の最後、ヨガの呼吸法がヨガへの扉を開くきっかけに。ダンスという情熱がありながらも、ヨガには独特の魅力がありました。</p>
+                        </div>
+                    </div>
 
-                <p>仏教の論文試験と面接を経て、私はその門をくぐる。</p>
+                    <!-- Timeline Item 3 -->
+                    <div class="timeline-item">
+                        <div class="timeline-year">2015</div>
+                        <div class="timeline-content">
+                            <h3>タイでの修行</h3>
+                            <p>シヴァナンダヨガの東京支部を発見し、タイのチェンライでの一ヶ月のヨガ修行を経て、ヨガ講師としての道を歩み始めます。</p>
+                        </div>
+                    </div>
 
-                <p>サンスクリット語が必修言語でした。</p>
+                    <!-- Timeline Item 4 -->
+                    <div class="timeline-item">
+                        <div class="timeline-year">2015-2024</div>
+                        <div class="timeline-content">
+                            <h3>東京での指導</h3>
+                            <p>東大前駅でスタートし、太極拳教室での7年間のクラス。素晴らしい生徒の皆さんに出会い、彼らが私を先生にしてくれました。</p>
+                        </div>
+                    </div>
 
-                <p>未知の言語に初めは驚き、戸惑い。でも、学びの中で新しい発見がありました。</p>
-
-                <p>講義の最後、ヨガの呼吸法。これが私のヨガへの扉を開くきっかけとなります。</p>
-
-                <p>ダンスという別の情熱が私を縛っていましたが、ヨガには独特の魅力がありました。</p>
-
-                <p>ある日、運命的にシヴァナンダヨガの東京支部を発見しました。</p>
-
-                <p>その場所は私の家からも近く、通ううちにヨガの深い魅力に取り憑かれ、タイのチェンライでの一ヶ月のヨガ修行を経て、ヨガ講師としての道を歩み始めます。</p>
-
-                <p>ダンスの経験がヨガの指導にも役立ち、最初のクラスは東大前駅でスタート。</p>
-
-                <p>多くの場所での指導、そして太極拳教室での7年間のクラス。</p>
-
-                <p>素晴らしい生徒の皆さんに出会い、彼らが私を先生にしてくれました。</p>
-
-                <p>大学入学から数えても20年近く、最初のクラスから10年以上の時間が流れ、私は東京から福岡へと移住。</p>
+                    <!-- Timeline Item 5 -->
+                    <div class="timeline-item">
+                        <div class="timeline-year">2025</div>
+                        <div class="timeline-content">
+                            <h3>福岡へ</h3>
+                            <p>大学入学から20年近く、最初のクラスから10年以上の時間が流れ、東京から福岡へと移住。新たな地で、ヨガの旅は続きます。</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Lesson Section -->
-    <section id="lesson" class="lesson">
+    <!-- Lesson Section (3D Cards) -->
+    <section id="lesson" class="lesson fullscreen">
         <div class="container">
-            <h2 class="section-title">レッスン内容</h2>
-            <div class="lesson-grid">
-                <div class="lesson-card">
+            <h2 class="section-title">
+                <span class="title-number">04</span>
+                レッスン案内
+            </h2>
+            <div class="lesson-cards">
+                <div class="lesson-card" data-tilt>
+                    <div class="card-glow"></div>
+                    <div class="card-number">01</div>
                     <div class="lesson-icon">📍</div>
-                    <h3>場所</h3>
-                    <p>福岡市内<br>レンタルスタジオ<br><span class="note">（詳細は後日お知らせ）</span></p>
+                    <h3 class="card-title">場所</h3>
+                    <p class="card-text">福岡市内レンタルスタジオ<br><span class="note-text">（詳細は後日お知らせ）</span></p>
                 </div>
-                <div class="lesson-card">
+
+                <div class="lesson-card" data-tilt>
+                    <div class="card-glow"></div>
+                    <div class="card-number">02</div>
                     <div class="lesson-icon">📅</div>
-                    <h3>スケジュール</h3>
-                    <p>日曜日 15:00〜<br>月2回</p>
+                    <h3 class="card-title">スケジュール</h3>
+                    <p class="card-text">日曜日 15:00〜<br>月2回</p>
                 </div>
-                <div class="lesson-card">
+
+                <div class="lesson-card" data-tilt>
+                    <div class="card-glow"></div>
+                    <div class="card-number">03</div>
                     <div class="lesson-icon">⏱️</div>
-                    <h3>時間</h3>
-                    <p>60分</p>
+                    <h3 class="card-title">時間</h3>
+                    <p class="card-text">60分</p>
                 </div>
-                <div class="lesson-card">
+
+                <div class="lesson-card" data-tilt>
+                    <div class="card-glow"></div>
+                    <div class="card-number">04</div>
                     <div class="lesson-icon">👥</div>
-                    <h3>形式</h3>
-                    <p>対面レッスン<br>グループ・個人どちらもOK</p>
+                    <h3 class="card-title">形式</h3>
+                    <p class="card-text">対面レッスン<br>グループ・個人どちらもOK</p>
                 </div>
-                <div class="lesson-card">
+
+                <div class="lesson-card" data-tilt>
+                    <div class="card-glow"></div>
+                    <div class="card-number">05</div>
                     <div class="lesson-icon">💰</div>
-                    <h3>料金</h3>
-                    <p>グループレッスン：2,500円<br>個人レッスン：応相談</p>
+                    <h3 class="card-title">料金</h3>
+                    <p class="card-text">グループ：2,500円<br>個人：応相談</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Gallery Section -->
-    <section id="gallery" class="gallery">
+    <!-- Gallery Section (Masonry) -->
+    <section id="gallery" class="gallery fullscreen">
         <div class="container">
-            <h2 class="section-title">ギャラリー</h2>
-            <div class="gallery-grid">
-                <div class="gallery-item">
-                    <img src="images/group-lesson.jpg" alt="グループレッスン">
+            <h2 class="section-title">
+                <span class="title-number">05</span>
+                ギャラリー
+            </h2>
+            <div class="masonry-grid">
+                <div class="gallery-item" data-lightbox>
+                    <img src="images/group-lesson.jpg" alt="グループレッスン" loading="lazy">
+                    <div class="item-overlay">
+                        <span class="overlay-text">グループレッスン</span>
+                    </div>
                 </div>
-                <div class="gallery-item">
-                    <img src="images/studio-pose.jpg" alt="スタジオレッスン">
+                <div class="gallery-item" data-lightbox>
+                    <img src="images/studio-pose.jpg" alt="スタジオレッスン" loading="lazy">
+                    <div class="item-overlay">
+                        <span class="overlay-text">スタジオレッスン</span>
+                    </div>
                 </div>
-                <div class="gallery-item">
-                    <img src="images/asana-chart.jpg" alt="アーサナチャート">
+                <div class="gallery-item" data-lightbox>
+                    <img src="images/asana-chart.jpg" alt="アーサナチャート" loading="lazy">
+                    <div class="item-overlay">
+                        <span class="overlay-text">アーサナチャート</span>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="contact">
+    <section id="contact" class="contact fullscreen">
         <div class="container">
-            <h2 class="section-title">お問い合わせ・予約</h2>
-            <p class="contact-text">レッスンのご予約は下記フォームから、またはInstagramのDMでお気軽にどうぞ。</p>
+            <h2 class="section-title">
+                <span class="title-number">06</span>
+                予約・お問い合わせ
+            </h2>
+            <p class="contact-intro">レッスンのご予約は下記フォームから、またはInstagramのDMでお気軽にどうぞ。</p>
 
-            <!-- 予約フォーム -->
+            <!-- Reservation Form -->
             <div class="reservation-form">
                 <iframe src="https://script.google.com/macros/s/AKfycbwt3-2FG4vYVzKTFTL6a_VFzT4eE43gQjekR4cpgt-EkVrfgdAMy4DI6o9iWGwRK5kV5w/exec"
                         width="100%"
@@ -184,13 +274,15 @@
                 </iframe>
             </div>
 
-            <!-- または Instagram -->
+            <!-- Divider -->
             <div class="contact-divider">
                 <span>または</span>
             </div>
 
+            <!-- Instagram Button -->
             <div class="contact-buttons">
-                <a href="https://instagram.com/hirokiplants" class="btn btn-instagram" target="_blank" rel="noopener noreferrer">
+                <a href="https://instagram.com/hirokiplants" class="btn-neon" target="_blank" rel="noopener noreferrer">
+                    <span class="btn-glow"></span>
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
                     </svg>
@@ -202,18 +294,19 @@
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="container">
-            <p>&copy; 2025 Hiroki Takamura. All rights reserved.</p>
-        </div>
+        <p>&copy; 2025 Hiroki Takamura. All rights reserved.</p>
     </footer>
 
-    <!-- 画像拡大モーダル -->
-    <div id="imageModal" class="image-modal">
-        <span class="image-modal-close">&times;</span>
-        <img class="image-modal-content" id="modalImage">
-        <div class="image-modal-caption" id="modalCaption"></div>
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox">
+        <span class="lightbox-close">&times;</span>
+        <img class="lightbox-content" id="lightboxImage">
+        <div class="lightbox-caption" id="lightboxCaption"></div>
     </div>
 
+    <!-- Scripts -->
+    <script src="js/particles.js"></script>
+    <script src="js/animations.js"></script>
     <script src="js/script.js"></script>
 </body>
 </html>

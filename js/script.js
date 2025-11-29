@@ -1,213 +1,310 @@
 // ================================
-// Smooth Scroll & Navigation
+// Interactive Elements
 // ================================
 
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        const href = this.getAttribute('href');
-        if (href !== '#') {
-            e.preventDefault();
-            const target = document.querySelector(href);
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
+document.addEventListener('DOMContentLoaded', () => {
+    // ================================
+    // 3D Tilt Effect for Cards
+    // ================================
+
+    const tiltElements = document.querySelectorAll('[data-tilt]');
+
+    tiltElements.forEach(element => {
+        element.addEventListener('mousemove', handleTilt);
+        element.addEventListener('mouseleave', resetTilt);
+    });
+
+    function handleTilt(e) {
+        const card = e.currentTarget;
+        const rect = card.getBoundingClientRect();
+
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+
+        const rotateX = ((y - centerY) / centerY) * -10;
+        const rotateY = ((x - centerX) / centerX) * 10;
+
+        card.style.transform = `
+            perspective(1000px)
+            rotateX(${rotateX}deg)
+            rotateY(${rotateY}deg)
+            translateZ(10px)
+        `;
+    }
+
+    function resetTilt(e) {
+        const card = e.currentTarget;
+        card.style.transform = '';
+    }
+
+    // ================================
+    // Lightbox for Gallery Images
+    // ================================
+
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImage');
+    const lightboxCaption = document.getElementById('lightboxCaption');
+    const lightboxClose = document.querySelector('.lightbox-close');
+
+    const galleryItems = document.querySelectorAll('[data-lightbox]');
+
+    galleryItems.forEach(item => {
+        item.addEventListener('click', () => {
+            const img = item.querySelector('img');
+            if (img && lightbox && lightboxImg) {
+                lightbox.style.display = 'flex';
+                lightboxImg.src = img.src;
+
+                if (lightboxCaption) {
+                    lightboxCaption.textContent = img.alt || '';
+                }
+
+                // Prevent body scroll
+                document.body.style.overflow = 'hidden';
             }
-        }
+        });
     });
-});
 
-// Scroll down indicator click
-const scrollDown = document.querySelector('.scroll-down');
-if (scrollDown) {
-    scrollDown.addEventListener('click', () => {
-        const aboutSection = document.querySelector('#about');
-        if (aboutSection) {
-            aboutSection.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
-    });
-}
-
-// ================================
-// Intersection Observer for Animations
-// ================================
-
-const observerOptions = {
-    threshold: 0.15,
-    rootMargin: '0px 0px -80px 0px'
-};
-
-const animateOnScroll = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('animate-in');
-        }
-    });
-}, observerOptions);
-
-// Observe all sections
-document.querySelectorAll('section').forEach(section => {
-    animateOnScroll.observe(section);
-});
-
-// Observe lesson cards with stagger
-const lessonCards = document.querySelectorAll('.lesson-card');
-lessonCards.forEach((card, index) => {
-    card.style.setProperty('--stagger-delay', `${index * 0.1}s`);
-    animateOnScroll.observe(card);
-});
-
-// ================================
-// Parallax Effect for Hero
-// ================================
-
-let lastScrollY = window.pageYOffset;
-let ticking = false;
-
-function updateParallax() {
-    const scrolled = window.pageYOffset;
-    const heroBackground = document.querySelector('.hero-background');
-
-    if (heroBackground && scrolled < window.innerHeight) {
-        heroBackground.style.transform = `translateY(${scrolled * 0.5}px)`;
+    // Close lightbox
+    if (lightboxClose) {
+        lightboxClose.addEventListener('click', closeLightbox);
     }
 
-    ticking = false;
-}
-
-window.addEventListener('scroll', () => {
-    lastScrollY = window.pageYOffset;
-
-    if (!ticking) {
-        window.requestAnimationFrame(updateParallax);
-        ticking = true;
-    }
-});
-
-// ================================
-// Story Content Fade-in on Scroll
-// ================================
-
-const storyObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            const paragraphs = entry.target.querySelectorAll('p');
-            paragraphs.forEach((p, index) => {
-                setTimeout(() => {
-                    p.style.opacity = '1';
-                    p.style.transform = 'translateY(0)';
-                }, index * 100);
-            });
-        }
-    });
-}, { threshold: 0.2 });
-
-const storyContent = document.querySelector('.story-content');
-if (storyContent) {
-    storyObserver.observe(storyContent);
-}
-
-// ================================
-// Gallery Hover Effects Enhancement
-// ================================
-
-const galleryItems = document.querySelectorAll('.gallery-item');
-galleryItems.forEach(item => {
-    item.addEventListener('mouseenter', function() {
-        this.style.zIndex = '10';
-    });
-
-    item.addEventListener('mouseleave', function() {
-        this.style.zIndex = '1';
-    });
-});
-
-// ================================
-// Button Ripple Effect
-// ================================
-
-const buttons = document.querySelectorAll('.btn');
-buttons.forEach(button => {
-    button.addEventListener('click', function(e) {
-        const ripple = document.createElement('span');
-        const rect = this.getBoundingClientRect();
-        const size = Math.max(rect.width, rect.height);
-        const x = e.clientX - rect.left - size / 2;
-        const y = e.clientY - rect.top - size / 2;
-
-        ripple.style.width = ripple.style.height = size + 'px';
-        ripple.style.left = x + 'px';
-        ripple.style.top = y + 'px';
-        ripple.classList.add('ripple');
-
-        this.appendChild(ripple);
-
-        setTimeout(() => {
-            ripple.remove();
-        }, 600);
-    });
-});
-
-// ================================
-// Page Load Animation
-// ================================
-
-window.addEventListener('load', () => {
-    document.body.classList.add('loaded');
-});
-
-// ================================
-// Smooth Fade-in for Images
-// ================================
-
-const images = document.querySelectorAll('img');
-images.forEach(img => {
-    if (img.complete) {
-        img.classList.add('loaded');
-    } else {
-        img.addEventListener('load', function() {
-            this.classList.add('loaded');
+    if (lightbox) {
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                closeLightbox();
+            }
         });
     }
-});
 
-// ================================
-// 画像拡大機能（Image Modal）
-// ================================
-
-const modal = document.getElementById('imageModal');
-const modalImg = document.getElementById('modalImage');
-const modalCaption = document.getElementById('modalCaption');
-const closeBtn = document.querySelector('.image-modal-close');
-
-// ギャラリー画像にクリックイベントを追加
-document.querySelectorAll('.gallery-item img').forEach(img => {
-    img.addEventListener('click', function() {
-        modal.style.display = 'block';
-        modalImg.src = this.src;
-        modalCaption.textContent = this.alt;
+    // Close with ESC key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && lightbox && lightbox.style.display === 'flex') {
+            closeLightbox();
+        }
     });
-});
 
-// モーダルを閉じる
-closeBtn.addEventListener('click', () => {
-    modal.style.display = 'none';
-});
-
-// モーダルの外側をクリックしても閉じる
-modal.addEventListener('click', (e) => {
-    if (e.target === modal) {
-        modal.style.display = 'none';
+    function closeLightbox() {
+        if (lightbox) {
+            lightbox.style.display = 'none';
+            document.body.style.overflow = '';
+        }
     }
-});
 
-// ESCキーで閉じる
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modal.style.display === 'block') {
-        modal.style.display = 'none';
+    // ================================
+    // Horizontal Timeline Scroll
+    // ================================
+
+    const timelineWrapper = document.querySelector('.timeline-wrapper');
+
+    if (timelineWrapper && window.innerWidth <= 768) {
+        // Enable touch scrolling for mobile
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+
+        timelineWrapper.addEventListener('mousedown', (e) => {
+            isDown = true;
+            timelineWrapper.style.cursor = 'grabbing';
+            startX = e.pageX - timelineWrapper.offsetLeft;
+            scrollLeft = timelineWrapper.scrollLeft;
+        });
+
+        timelineWrapper.addEventListener('mouseleave', () => {
+            isDown = false;
+            timelineWrapper.style.cursor = 'grab';
+        });
+
+        timelineWrapper.addEventListener('mouseup', () => {
+            isDown = false;
+            timelineWrapper.style.cursor = 'grab';
+        });
+
+        timelineWrapper.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - timelineWrapper.offsetLeft;
+            const walk = (x - startX) * 2;
+            timelineWrapper.scrollLeft = scrollLeft - walk;
+        });
     }
+
+    // ================================
+    // Active Nav Link on Scroll
+    // ================================
+
+    const navLinks = document.querySelectorAll('.nav-link');
+    const sections = document.querySelectorAll('section');
+
+    window.addEventListener('scroll', () => {
+        let current = '';
+
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+
+            if (window.pageYOffset >= sectionTop - 200) {
+                current = section.getAttribute('id');
+            }
+        });
+
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${current}`) {
+                link.classList.add('active');
+            }
+        });
+    });
+
+    // ================================
+    // Smooth Scroll for Anchor Links
+    // ================================
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            const href = this.getAttribute('href');
+
+            if (href === '#') {
+                e.preventDefault();
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            } else {
+                const target = document.querySelector(href);
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            }
+        });
+    });
+
+    // ================================
+    // Neon Button Ripple Effect
+    // ================================
+
+    const neonButtons = document.querySelectorAll('.btn-neon');
+
+    neonButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            const ripple = document.createElement('span');
+            const rect = this.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            const x = e.clientX - rect.left - size / 2;
+            const y = e.clientY - rect.top - size / 2;
+
+            ripple.style.width = ripple.style.height = size + 'px';
+            ripple.style.left = x + 'px';
+            ripple.style.top = y + 'px';
+            ripple.classList.add('ripple');
+            ripple.style.position = 'absolute';
+            ripple.style.borderRadius = '50%';
+            ripple.style.background = 'rgba(255, 255, 255, 0.5)';
+            ripple.style.transform = 'scale(0)';
+            ripple.style.animation = 'ripple-effect 0.6s ease-out';
+            ripple.style.pointerEvents = 'none';
+
+            this.appendChild(ripple);
+
+            setTimeout(() => {
+                ripple.remove();
+            }, 600);
+        });
+    });
+
+    // Add ripple animation CSS
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes ripple-effect {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+    `;
+    document.head.appendChild(style);
+
+    // ================================
+    // Performance Optimization
+    // ================================
+
+    // Lazy load images
+    if ('IntersectionObserver' in window) {
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    if (img.dataset.src) {
+                        img.src = img.dataset.src;
+                        img.removeAttribute('data-src');
+                    }
+                    img.classList.add('loaded');
+                    observer.unobserve(img);
+                }
+            });
+        });
+
+        document.querySelectorAll('img[loading="lazy"]').forEach(img => {
+            imageObserver.observe(img);
+        });
+    }
+
+    // ================================
+    // Accessibility: Keyboard Navigation
+    // ================================
+
+    // Focus trap for lightbox
+    if (lightbox) {
+        lightbox.addEventListener('keydown', (e) => {
+            if (e.key === 'Tab') {
+                e.preventDefault();
+                if (lightboxClose) {
+                    lightboxClose.focus();
+                }
+            }
+        });
+    }
+
+    // Skip to main content (for screen readers)
+    const skipLink = document.createElement('a');
+    skipLink.href = '#hero';
+    skipLink.textContent = 'Skip to main content';
+    skipLink.className = 'skip-link';
+    skipLink.style.cssText = `
+        position: absolute;
+        top: -40px;
+        left: 0;
+        background: var(--accent-electric);
+        color: var(--bg-dark);
+        padding: 8px;
+        text-decoration: none;
+        z-index: 100;
+    `;
+    skipLink.addEventListener('focus', () => {
+        skipLink.style.top = '0';
+    });
+    skipLink.addEventListener('blur', () => {
+        skipLink.style.top = '-40px';
+    });
+    document.body.insertBefore(skipLink, document.body.firstChild);
+
+    // ================================
+    // Console Log - Easter Egg
+    // ================================
+
+    console.log(
+        '%c Body in Motion %c',
+        'background: linear-gradient(135deg, #00F5FF 0%, #FF00E5 100%); color: white; font-size: 20px; padding: 10px; font-weight: bold;',
+        ''
+    );
+    console.log('✨ Designed with GSAP + Three.js + Modern CSS');
+    console.log('📧 Contact: info.hirokitakamura@gmail.com');
 });
