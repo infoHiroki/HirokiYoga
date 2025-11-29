@@ -72,10 +72,10 @@ function initParticles() {
     geometry.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
 
     const material = new THREE.PointsMaterial({
-        size: 0.05,
+        size: 0.15,
         vertexColors: true,
         transparent: true,
-        opacity: 0.6,
+        opacity: 0.9,
         sizeAttenuation: true,
         blending: THREE.AdditiveBlending
     });

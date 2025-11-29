@@ -211,8 +211,9 @@ section:not(.hero) {
 
 .hero {
     position: relative;
-    background: linear-gradient(135deg, var(--bg-darker) 0%, var(--primary-navy) 100%);
+    background: linear-gradient(135deg, rgba(6, 8, 15, 0.85) 0%, rgba(10, 17, 40, 0.85) 100%);
     overflow: hidden;
+    z-index: 1;
 }
 
 .hero-bg-animation {
@@ -330,7 +331,9 @@ section:not(.hero) {
    ================================ */
 
 .about {
-    background: var(--bg-dark);
+    position: relative;
+    background: rgba(13, 19, 33, 0.7);
+    z-index: 1;
 }
 
 .split-screen {
@@ -503,8 +506,10 @@ section:not(.hero) {
    ================================ */
 
 .story {
-    background: var(--primary-navy);
+    position: relative;
+    background: rgba(10, 17, 40, 0.75);
     overflow: hidden;
+    z-index: 1;
 }
 
 .story-container {
@@ -559,7 +564,9 @@ section:not(.hero) {
    ================================ */
 
 .lesson {
-    background: var(--bg-dark);
+    position: relative;
+    background: rgba(13, 19, 33, 0.75);
+    z-index: 1;
 }
 
 .lesson-cards {
@@ -614,7 +621,9 @@ section:not(.hero) {
    ================================ */
 
 .gallery {
-    background: var(--bg-darker);
+    position: relative;
+    background: rgba(6, 8, 15, 0.8);
+    z-index: 1;
 }
 
 .masonry-grid {
@@ -678,7 +687,9 @@ section:not(.hero) {
    ================================ */
 
 .contact {
-    background: linear-gradient(135deg, var(--primary-navy) 0%, var(--bg-darker) 100%);
+    position: relative;
+    background: linear-gradient(135deg, rgba(10, 17, 40, 0.8) 0%, rgba(6, 8, 15, 0.85) 100%);
+    z-index: 1;
 }
 
 .contact-intro {
