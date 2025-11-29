@@ -17,28 +17,13 @@ function initAnimations() {
     // Hero Section Animations
     // ================================
 
-    // Hero title character animation
-    const heroTitle = document.querySelector('.hero-title');
-    if (heroTitle) {
-        const text = heroTitle.textContent;
-        heroTitle.innerHTML = '';
-
-        text.split('').forEach((char, index) => {
-            const span = document.createElement('span');
-            span.textContent = char === ' ' ? '\u00A0' : char;
-            span.style.display = 'inline-block';
-            span.style.opacity = '0';
-            heroTitle.appendChild(span);
-
-            gsap.to(span, {
-                opacity: 1,
-                y: 0,
-                duration: 0.5,
-                delay: index * 0.05,
-                ease: 'power2.out'
-            });
-        });
-    }
+    // Hero title fade in animation
+    gsap.from('.hero-title', {
+        opacity: 0,
+        y: 30,
+        duration: 1,
+        ease: 'power2.out'
+    });
 
     // Hero fade out on scroll
     gsap.to('.hero-content', {
@@ -74,7 +59,6 @@ function initAnimations() {
             trigger: '.info-cards',
             start: 'top 80%'
         },
-        opacity: 0,
         y: 50,
         stagger: 0.2,
         duration: 0.8,
@@ -111,7 +95,6 @@ function initAnimations() {
             trigger: '.story',
             start: 'top 50%'
         },
-        opacity: 0,
         y: 30,
         stagger: 0.3,
         duration: 0.8
@@ -126,7 +109,6 @@ function initAnimations() {
             trigger: '.lesson',
             start: 'top 70%'
         },
-        opacity: 0,
         y: 50,
         rotation: -5,
         stagger: 0.15,
@@ -143,8 +125,7 @@ function initAnimations() {
             trigger: '.gallery',
             start: 'top 70%'
         },
-        opacity: 0,
-        scale: 0.8,
+        scale: 0.95,
         stagger: 0.2,
         duration: 0.8,
         ease: 'power2.out'
