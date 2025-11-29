@@ -71,17 +71,17 @@ let ticking = false;
 function updateParallax() {
     const scrolled = window.pageYOffset;
     const heroBackground = document.querySelector('.hero-background');
-    
+
     if (heroBackground && scrolled < window.innerHeight) {
         heroBackground.style.transform = `translateY(${scrolled * 0.5}px)`;
     }
-    
+
     ticking = false;
 }
 
 window.addEventListener('scroll', () => {
     lastScrollY = window.pageYOffset;
-    
+
     if (!ticking) {
         window.requestAnimationFrame(updateParallax);
         ticking = true;
@@ -120,7 +120,7 @@ galleryItems.forEach(item => {
     item.addEventListener('mouseenter', function() {
         this.style.zIndex = '10';
     });
-    
+
     item.addEventListener('mouseleave', function() {
         this.style.zIndex = '1';
     });
@@ -138,14 +138,14 @@ buttons.forEach(button => {
         const size = Math.max(rect.width, rect.height);
         const x = e.clientX - rect.left - size / 2;
         const y = e.clientY - rect.top - size / 2;
-        
+
         ripple.style.width = ripple.style.height = size + 'px';
         ripple.style.left = x + 'px';
         ripple.style.top = y + 'px';
         ripple.classList.add('ripple');
-        
+
         this.appendChild(ripple);
-        
+
         setTimeout(() => {
             ripple.remove();
         }, 600);
@@ -172,5 +172,42 @@ images.forEach(img => {
         img.addEventListener('load', function() {
             this.classList.add('loaded');
         });
+    }
+});
+
+// ================================
+// 画像拡大機能（Image Modal）
+// ================================
+
+const modal = document.getElementById('imageModal');
+const modalImg = document.getElementById('modalImage');
+const modalCaption = document.getElementById('modalCaption');
+const closeBtn = document.querySelector('.image-modal-close');
+
+// ギャラリー画像にクリックイベントを追加
+document.querySelectorAll('.gallery-item img').forEach(img => {
+    img.addEventListener('click', function() {
+        modal.style.display = 'block';
+        modalImg.src = this.src;
+        modalCaption.textContent = this.alt;
+    });
+});
+
+// モーダルを閉じる
+closeBtn.addEventListener('click', () => {
+    modal.style.display = 'none';
+});
+
+// モーダルの外側をクリックしても閉じる
+modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+        modal.style.display = 'none';
+    }
+});
+
+// ESCキーで閉じる
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.style.display === 'block') {
+        modal.style.display = 'none';
     }
 });
