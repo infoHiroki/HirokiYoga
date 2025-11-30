@@ -4,6 +4,40 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     // ================================
+    // Generate Sunday Dates for Reservation Form
+    // ================================
+
+    const dateSelect = document.getElementById('date');
+    if (dateSelect) {
+        const today = new Date();
+        const sundays = [];
+
+        // Find next 4 Sundays
+        for (let i = 0; i < 28; i++) {
+            const date = new Date(today);
+            date.setDate(today.getDate() + i);
+
+            if (date.getDay() === 0) { // Sunday = 0
+                sundays.push(date);
+                if (sundays.length === 4) break;
+            }
+        }
+
+        // Add options to select
+        sundays.forEach(sunday => {
+            const option = document.createElement('option');
+            const year = sunday.getFullYear();
+            const month = sunday.getMonth() + 1;
+            const day = sunday.getDate();
+
+            const formattedDate = `${year}年${month}月${day}日（日）10:00〜`;
+            option.value = formattedDate;
+            option.textContent = formattedDate;
+            dateSelect.appendChild(option);
+        });
+    }
+
+    // ================================
     // 3D Tilt Effect for Cards
     // ================================
 

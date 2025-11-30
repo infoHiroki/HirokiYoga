@@ -185,7 +185,7 @@
                     <div class="card-number">01</div>
                     <div class="lesson-icon">📍</div>
                     <h3 class="card-title">場所</h3>
-                    <p class="card-text">福岡市内レンタルスタジオ<br><span class="note-text">（詳細は後日お知らせ）</span></p>
+                    <p class="card-text"><a href="https://www.instagram.com/vapemania_fukuoka/" target="_blank" rel="noopener noreferrer" class="neon-link">VapeManiaFUKUOKA</a><br><span class="note-text">福岡市中央区今泉1-7-21-2F</span></p>
                 </div>
 
                 <div class="lesson-card" data-tilt>
@@ -193,7 +193,7 @@
                     <div class="card-number">02</div>
                     <div class="lesson-icon">📅</div>
                     <h3 class="card-title">スケジュール</h3>
-                    <p class="card-text">日曜日 15:00〜<br>月2回</p>
+                    <p class="card-text">毎週日曜日 10:00〜<br><span class="note-text">※1名以上の予約で開催</span></p>
                 </div>
 
                 <div class="lesson-card" data-tilt>
@@ -207,17 +207,25 @@
                 <div class="lesson-card" data-tilt>
                     <div class="card-glow"></div>
                     <div class="card-number">04</div>
-                    <div class="lesson-icon">👥</div>
-                    <h3 class="card-title">形式</h3>
-                    <p class="card-text">対面レッスン<br>グループ・個人どちらもOK</p>
+                    <div class="lesson-icon">🧘</div>
+                    <h3 class="card-title">持ち物</h3>
+                    <p class="card-text">ヨガマット<span class="required">*</span><br><span class="note-text">※必ずご持参ください</span></p>
                 </div>
 
                 <div class="lesson-card" data-tilt>
                     <div class="card-glow"></div>
                     <div class="card-number">05</div>
+                    <div class="lesson-icon">👥</div>
+                    <h3 class="card-title">定員</h3>
+                    <p class="card-text">3名まで<br><span class="note-text">※先着順・要予約</span></p>
+                </div>
+
+                <div class="lesson-card" data-tilt>
+                    <div class="card-glow"></div>
+                    <div class="card-number">06</div>
                     <div class="lesson-icon">💰</div>
                     <h3 class="card-title">料金</h3>
-                    <p class="card-text">グループ：2,500円<br>個人：応相談</p>
+                    <p class="card-text">2,500円<br><span class="note-text">※当日現金払い</span></p>
                 </div>
             </div>
         </div>
@@ -260,7 +268,8 @@
                 <span class="title-number">06</span>
                 予約・お問い合わせ
             </h2>
-            <p class="contact-intro">レッスンのご予約は下記フォームから、またはInstagramのDMでお気軽にどうぞ。</p>
+            <p class="contact-intro">レッスンのご予約は下記フォームから、またはInstagramのDMでお気軽にどうぞ。<br>
+            <span class="form-note">※フォーム送信後、確認のご連絡をいたします（仮予約）。定員に達した場合はご希望に添えない場合があります。</span></p>
 
             <!-- Reservation Form -->
             <div class="reservation-form-wrapper">
@@ -283,23 +292,21 @@
 
                         <div class="form-group">
                             <label for="date" class="form-label">希望日時 <span class="required">*</span></label>
-                            <input type="text" id="date" name="date" class="form-input" placeholder="例：12月15日（日）15:00〜" required>
+                            <select id="date" name="date" class="form-input" required>
+                                <option value="">選択してください</option>
+                                <!-- JavaScriptで日曜日を動的生成 -->
+                            </select>
                         </div>
 
-                        <div class="form-group full-width">
-                            <label class="form-label">レッスン形式 <span class="required">*</span></label>
-                            <div class="radio-group">
-                                <label class="radio-label">
-                                    <input type="radio" name="lesson_type" value="グループレッスン" required>
-                                    <span class="radio-custom"></span>
-                                    <span>グループレッスン（2,500円）</span>
-                                </label>
-                                <label class="radio-label">
-                                    <input type="radio" name="lesson_type" value="個人レッスン" required>
-                                    <span class="radio-custom"></span>
-                                    <span>個人レッスン（応相談）</span>
-                                </label>
-                            </div>
+                        <div class="form-group">
+                            <label for="participants" class="form-label">参加人数 <span class="required">*</span></label>
+                            <select id="participants" name="participants" class="form-input" required>
+                                <option value="">選択してください</option>
+                                <option value="1">1名</option>
+                                <option value="2">2名</option>
+                                <option value="3">3名</option>
+                            </select>
+                            <p class="form-note">※定員は3名までです。複数名でお申し込みの場合、定員調整のためご希望に添えない場合があります。</p>
                         </div>
 
                         <div class="form-group full-width">

@@ -824,6 +824,13 @@ section:not(.hero) {
     min-height: 120px;
 }
 
+.form-note {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-top: var(--spacing-xs);
+    line-height: 1.6;
+}
+
 .radio-group {
     display: flex;
     gap: var(--spacing-lg);
@@ -879,6 +886,7 @@ section:not(.hero) {
     padding: var(--spacing-md) var(--spacing-xl);
     font-size: 1.1rem;
     font-weight: 700;
+    justify-content: center;
 }
 
 .contact-divider {
