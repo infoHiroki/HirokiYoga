@@ -259,27 +259,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Skip to main content (for screen readers)
-    const skipLink = document.createElement('a');
-    skipLink.href = '#hero';
-    skipLink.textContent = 'Skip to main content';
-    skipLink.className = 'skip-link';
-    skipLink.style.cssText = `
-        position: absolute;
-        top: -40px;
-        left: 0;
-        background: var(--accent-electric);
-        color: var(--bg-dark);
-        padding: 8px;
-        text-decoration: none;
-        z-index: 100;
-    `;
-    skipLink.addEventListener('focus', () => {
-        skipLink.style.top = '0';
-    });
-    skipLink.addEventListener('blur', () => {
-        skipLink.style.top = '-40px';
-    });
-    document.body.insertBefore(skipLink, document.body.firstChild);
+    // Removed: causing visual issue in top-left corner
 
     // ================================
     // Console Log - Easter Egg

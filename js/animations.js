@@ -173,24 +173,8 @@ function initAnimations() {
     // Smooth Scroll for Nav Links
     // ================================
 
-    document.querySelectorAll('.nav-link').forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            const targetId = link.getAttribute('href');
-            const target = document.querySelector(targetId);
-
-            if (target) {
-                gsap.to(window, {
-                    scrollTo: {
-                        y: target,
-                        offsetY: 0
-                    },
-                    duration: 1,
-                    ease: 'power2.inOut'
-                });
-            }
-        });
-    });
+    // Removed: Using native smooth scroll in script.js instead
+    // (GSAP ScrollToPlugin not loaded)
 
     // ================================
     // Cursor Glow Effect
