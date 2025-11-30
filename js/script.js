@@ -81,42 +81,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ================================
-    // Horizontal Timeline Scroll
+    // Timeline is now vertical - no horizontal scroll needed
     // ================================
-
-    const timelineWrapper = document.querySelector('.timeline-wrapper');
-
-    if (timelineWrapper && window.innerWidth <= 768) {
-        // Enable touch scrolling for mobile
-        let isDown = false;
-        let startX;
-        let scrollLeft;
-
-        timelineWrapper.addEventListener('mousedown', (e) => {
-            isDown = true;
-            timelineWrapper.style.cursor = 'grabbing';
-            startX = e.pageX - timelineWrapper.offsetLeft;
-            scrollLeft = timelineWrapper.scrollLeft;
-        });
-
-        timelineWrapper.addEventListener('mouseleave', () => {
-            isDown = false;
-            timelineWrapper.style.cursor = 'grab';
-        });
-
-        timelineWrapper.addEventListener('mouseup', () => {
-            isDown = false;
-            timelineWrapper.style.cursor = 'grab';
-        });
-
-        timelineWrapper.addEventListener('mousemove', (e) => {
-            if (!isDown) return;
-            e.preventDefault();
-            const x = e.pageX - timelineWrapper.offsetLeft;
-            const walk = (x - startX) * 2;
-            timelineWrapper.scrollLeft = scrollLeft - walk;
-        });
-    }
 
     // ================================
     // Active Nav Link on Scroll

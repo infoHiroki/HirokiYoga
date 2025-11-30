@@ -348,6 +348,19 @@ section:not(.hero) {
     min-height: 100vh;
 }
 
+.about .section-title {
+    position: absolute;
+    top: var(--spacing-3xl);
+    left: 50%;
+    transform: translateX(-50%);
+    width: max-content;
+    z-index: 10;
+}
+
+.about .scrollable-content {
+    padding-top: calc(var(--spacing-3xl) * 2.5);
+}
+
 .fixed-image {
     position: sticky;
     top: 0;
@@ -399,6 +412,7 @@ section:not(.hero) {
     margin-bottom: var(--spacing-xl);
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: var(--spacing-md);
     color: var(--text-primary);
     font-weight: 900;
@@ -529,29 +543,47 @@ section:not(.hero) {
 
 .story-container {
     width: 100%;
-    padding: var(--spacing-3xl) 0;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: var(--spacing-3xl) var(--spacing-lg);
 }
 
 .timeline-wrapper {
-    overflow-x: auto;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
+    position: relative;
+    padding-left: var(--spacing-xl);
 }
 
-.timeline-wrapper::-webkit-scrollbar {
-    display: none;
+.timeline-wrapper::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(180deg, transparent 0%, var(--accent-electric) 10%, var(--accent-electric) 90%, transparent 100%);
 }
 
 .timeline-track {
     display: flex;
+    flex-direction: column;
     gap: var(--spacing-3xl);
-    padding: var(--spacing-xl);
-    min-width: max-content;
 }
 
 .timeline-item {
-    min-width: 400px;
-    max-width: 400px;
+    position: relative;
+    padding-left: var(--spacing-lg);
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -22px;
+    top: 8px;
+    width: 12px;
+    height: 12px;
+    background: var(--accent-lime);
+    border-radius: 50%;
+    box-shadow: 0 0 20px var(--accent-lime);
 }
 
 .timeline-year {
@@ -927,11 +959,13 @@ section:not(.hero) {
    ================================ */
 
 .footer {
-    background: var(--bg-darker);
+    background: rgba(6, 8, 15, 0.85);
     padding: var(--spacing-xl);
     text-align: center;
     color: var(--text-muted);
     font-size: 0.9rem;
+    position: relative;
+    z-index: 1;
 }
 
 /* ================================

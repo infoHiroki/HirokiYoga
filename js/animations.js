@@ -66,38 +66,20 @@ function initAnimations() {
     });
 
     // ================================
-    // Story Section - Horizontal Scroll
+    // Story Section - Vertical Timeline
     // ================================
-
-    if (window.innerWidth > 768) {
-        const timelineWrapper = document.querySelector('.timeline-track');
-        if (timelineWrapper) {
-            const scrollWidth = timelineWrapper.scrollWidth - window.innerWidth;
-
-            gsap.to(timelineWrapper, {
-                scrollTrigger: {
-                    trigger: '.story',
-                    start: 'top top',
-                    end: () => `+=${scrollWidth}`,
-                    scrub: 1,
-                    pin: true,
-                    anticipatePin: 1
-                },
-                x: -scrollWidth,
-                ease: 'none'
-            });
-        }
-    }
 
     // Timeline items fade in
     gsap.from('.timeline-item', {
         scrollTrigger: {
             trigger: '.story',
-            start: 'top 50%'
+            start: 'top 70%'
         },
-        y: 30,
-        stagger: 0.3,
-        duration: 0.8
+        opacity: 0,
+        y: 50,
+        stagger: 0.2,
+        duration: 0.8,
+        ease: 'power2.out'
     });
 
     // ================================
@@ -180,27 +162,5 @@ function initAnimations() {
     // Cursor Glow Effect
     // ================================
 
-    const cursorGlow = document.querySelector('.cursor-glow');
-    if (cursorGlow) {
-        document.addEventListener('mousemove', (e) => {
-            gsap.to(cursorGlow, {
-                x: e.clientX - 150,
-                y: e.clientY - 150,
-                duration: 0.3,
-                ease: 'power2.out'
-            });
-
-            // Show glow in hero section
-            const hero = document.querySelector('.hero');
-            if (hero) {
-                const rect = hero.getBoundingClientRect();
-                const isInHero = e.clientY >= rect.top && e.clientY <= rect.bottom;
-
-                gsap.to(cursorGlow, {
-                    opacity: isInHero ? 0.3 : 0,
-                    duration: 0.3
-                });
-            }
-        });
-    }
+    // Removed: causing position issues
 }
