@@ -212,8 +212,9 @@ section:not(.hero) {
 
 .hero {
     position: relative;
-    background: linear-gradient(135deg, #06080F 0%, #0A1128 100%);
+    background: linear-gradient(135deg, rgba(6, 8, 15, 0.85) 0%, rgba(10, 17, 40, 0.85) 100%);
     overflow: hidden;
+    z-index: 1;
 }
 
 .hero-bg-animation {
@@ -336,7 +337,8 @@ section:not(.hero) {
 
 .about {
     position: relative;
-    background: #0D1321;
+    background: rgba(13, 19, 33, 0.85);
+    z-index: 1;
 }
 
 .split-screen {
@@ -520,8 +522,9 @@ section:not(.hero) {
 
 .story {
     position: relative;
-    background: #0A1128;
+    background: rgba(10, 17, 40, 0.85);
     overflow: hidden;
+    z-index: 1;
 }
 
 .story-container {
@@ -577,7 +580,8 @@ section:not(.hero) {
 
 .lesson {
     position: relative;
-    background: #0D1321;
+    background: rgba(13, 19, 33, 0.85);
+    z-index: 1;
 }
 
 .lesson-cards {
@@ -595,8 +599,8 @@ section:not(.hero) {
     position: relative;
     overflow: hidden;
     transition: var(--transition-slow);
-    transform-style: preserve-3d;
     cursor: pointer;
+    opacity: 1;
 }
 
 .lesson-card:hover {
@@ -612,7 +616,7 @@ section:not(.hero) {
     font-family: 'JetBrains Mono', monospace;
     font-size: 3rem;
     font-weight: 700;
-    color: rgba(0, 245, 255, 0.1);
+    color: rgba(0, 245, 255, 0.3);
 }
 
 .lesson-icon {
@@ -633,7 +637,8 @@ section:not(.hero) {
 
 .gallery {
     position: relative;
-    background: #06080F;
+    background: rgba(6, 8, 15, 0.85);
+    z-index: 1;
 }
 
 .masonry-grid {
@@ -698,7 +703,8 @@ section:not(.hero) {
 
 .contact {
     position: relative;
-    background: linear-gradient(135deg, #0A1128 0%, #06080F 100%);
+    background: linear-gradient(135deg, rgba(10, 17, 40, 0.85) 0%, rgba(6, 8, 15, 0.85) 100%);
+    z-index: 1;
 }
 
 .contact-intro {

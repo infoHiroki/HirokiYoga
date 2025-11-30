@@ -104,17 +104,20 @@ function initAnimations() {
     // Lesson Section - Cards Animation
     // ================================
 
+    // Temporarily disabled to debug
+    /*
     gsap.from('.lesson-card', {
         scrollTrigger: {
             trigger: '.lesson',
             start: 'top 70%'
         },
+        opacity: 0,
         y: 50,
-        rotation: -5,
         stagger: 0.15,
         duration: 0.8,
-        ease: 'back.out(1.7)'
+        ease: 'power2.out'
     });
+    */
 
     // ================================
     // Gallery Section
