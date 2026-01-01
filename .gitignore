@@ -31,3 +31,5 @@ yarn-error.log*
 # Build files
 dist/
 build/
+.DS_Store
+.claude/
